@@ -142,4 +142,5 @@ RemoteSystemsTempFiles/
 .bak
 
 # API KEY
-*Secret
+NaverSecret.*
+WeatherSecret.*
