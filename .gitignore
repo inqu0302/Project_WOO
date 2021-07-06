@@ -142,4 +142,4 @@ RemoteSystemsTempFiles/
 .bak
 
 # API KEY
-Secret.*
+*Secret
