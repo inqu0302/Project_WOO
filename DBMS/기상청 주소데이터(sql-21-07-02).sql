@@ -13,3 +13,29 @@ CREATE TABLE tbl_addr(
 );
 
 select * from tbl_addr;
+
+select * from tbl_addr
+WHERE ar_addr LIKE CONCAT ('%' , '광주광역시서구양', '%');
+
+/*
+String dong = "중흥동";
+VO vo = null;
+while(true) {
+   vo = findByDong(dong);
+   if(vo != null ) break;
+   dong = dong.substring(0, dong.length - 1)
+   if(dong.legnth < 1) break; 	
+}
+
+
+
+
+|
+
+
+*/
+select * from tbl_addr WHERE ar_dong LIKE CONCAT ('중흥동', '%');
+select * from tbl_addr WHERE ar_dong LIKE CONCAT ('중흥', '%');
+
+
+

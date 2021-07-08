@@ -52,7 +52,7 @@ public class HomeController {
 			addr += addrList.get(i).getName();
 		}
 		
-		log.debug("String addr {}", addr);
+		log.debug("String addr {}", addr.trim());
 		
 		List<AddrVO> location = nService.findByAddr(addr);
 		

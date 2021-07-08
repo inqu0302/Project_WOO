@@ -33,8 +33,8 @@ public class WeatherServiceImplV1 implements WeatherService {
 		StringBuilder queryURL = new StringBuilder();
 		queryURL.append(WeatherSecret.URL);
 		
-		String queryString = String.format("?serviceKey=%s&numOfRows=10&pageNo=3&dataType=JSON"
-				+ "&base_date=20200707&base_time=0500&nx=%s&ny=%s", WeatherSecret.KEY, ar_x, ar_y);
+		String queryString = String.format("?serviceKey=%s&numOfRows=10&pageNo=10&dataType=JSON"
+				+ "&base_date=20210708&base_time=0500&nx=%s&ny=%s", WeatherSecret.KEY, ar_x, ar_y);
 		
 		queryURL.append(queryString);
 		

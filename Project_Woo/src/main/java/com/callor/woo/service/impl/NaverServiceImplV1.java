@@ -36,7 +36,7 @@ public class NaverServiceImplV1 implements NaverService{
 		StringBuilder queryURL = new StringBuilder();
 		queryURL.append(NaverSecret.NURL.Reverse);
 		
-		String queryString = String.format("?coords=%s,%s&output=json",longitude, latitude );
+		String queryString = String.format("?coords=%s,%s&orders=admcode&output=json",longitude, latitude );
 		queryURL.append(queryString);
 		
 		log.debug("queryString {} ",queryURL.toString());
@@ -126,6 +126,7 @@ public class NaverServiceImplV1 implements NaverService{
 		// TODO Auto-generated method stub
 		
 		List<AddrVO> addrList = addrDao.findByAddr(addr);
+			
 		
 		return addrList;
 	}
