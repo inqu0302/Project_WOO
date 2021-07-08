@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.callor.woo.dao.AddrDao;
 import com.callor.woo.model.AddrDTO;
 import com.callor.woo.model.AddrVO;
 import com.callor.woo.service.NaverService;
+import com.callor.woo.service.WeatherService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +26,9 @@ public class HomeController {
 	
 	@Qualifier("naverServiceV1")
 	protected final NaverService nService;
+	
+	@Qualifier("weatherService")
+	protected final WeatherService wService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
@@ -54,6 +57,9 @@ public class HomeController {
 		List<AddrVO> location = nService.findByAddr(addr);
 		
 		log.debug("location {}",location);
+		
+		String queryURL = wService.queryURL(location);
+		wService.getJsonString(queryURL);
 		
 		return "home";
 	}

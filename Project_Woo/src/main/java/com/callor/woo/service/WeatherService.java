@@ -11,10 +11,11 @@ import com.callor.woo.model.WeatherDTO;
 
 public interface WeatherService {
 	
-	public String queryURL(AddrVO vo);
+	public String queryURL(List<AddrVO> location);
 
 	public String getJsonString(String queryURL) throws MalformedURLException, IOException;
 	
 	public List<WeatherDTO> getAddrList(String jsonString) throws ParseException;
+	
 	
 }
