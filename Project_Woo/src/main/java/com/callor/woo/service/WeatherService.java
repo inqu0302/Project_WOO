@@ -7,7 +7,7 @@ import java.util.List;
 import org.json.simple.parser.ParseException;
 
 import com.callor.woo.model.AddrVO;
-import com.callor.woo.model.WeatherDTO;
+import com.callor.woo.model.WeatherVO;
 
 public interface WeatherService {
 	
@@ -15,7 +15,7 @@ public interface WeatherService {
 
 	public String getJsonString(String queryURL) throws MalformedURLException, IOException;
 	
-	public List<WeatherDTO> getAddrList(String jsonString) throws ParseException;
+	public List<WeatherVO> getWeatherList(String jsonString) throws ParseException;
 	
 	
 }

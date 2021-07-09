@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.callor.woo.model.AddrDTO;
 import com.callor.woo.model.AddrVO;
+import com.callor.woo.model.WeatherVO;
 import com.callor.woo.service.NaverService;
 import com.callor.woo.service.WeatherService;
 
@@ -59,7 +60,10 @@ public class HomeController {
 		log.debug("location {}",location);
 		
 		String queryURL = wService.queryURL(location);
-		wService.getJsonString(queryURL);
+		String weatherString = wService.getJsonString(queryURL);
+		List<WeatherVO> weatherVO = wService.getWeatherList(weatherString);
+		
+		log.debug("날씨 파싱 데이터 {} ",weatherVO.toString());
 		
 		return "home";
 	}

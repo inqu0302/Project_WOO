@@ -6,14 +6,18 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 
 import com.callor.woo.config.WeatherSecret;
 import com.callor.woo.model.AddrVO;
-import com.callor.woo.model.WeatherDTO;
+import com.callor.woo.model.WeatherVO;
 import com.callor.woo.service.WeatherService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -33,8 +37,8 @@ public class WeatherServiceImplV1 implements WeatherService {
 		StringBuilder queryURL = new StringBuilder();
 		queryURL.append(WeatherSecret.URL);
 		
-		String queryString = String.format("?serviceKey=%s&numOfRows=10&pageNo=10&dataType=JSON"
-				+ "&base_date=20210708&base_time=0500&nx=%s&ny=%s", WeatherSecret.KEY, ar_x, ar_y);
+		String queryString = String.format("?serviceKey=%s&numOfRows=225&pageNo=1&dataType=JSON"
+				+ "&base_date=20210709&base_time=0500&nx=%s&ny=%s", WeatherSecret.KEY, ar_x, ar_y);
 		
 		queryURL.append(queryString);
 		
@@ -75,13 +79,54 @@ public class WeatherServiceImplV1 implements WeatherService {
 		}
 		log.debug("날씨 응답 결과 {}",sBuffer.toString());
 		
-		return null;
+		return sBuffer.toString();
 	}
 
 	@Override
-	public List<WeatherDTO> getAddrList(String jsonString) throws ParseException {
+	public List<WeatherVO> getWeatherList(String jsonString) throws ParseException {
 		// TODO Auto-generated method stub
-		return null;
+		
+		JSONParser jParser = new JSONParser();
+		
+		JSONObject jObject = (JSONObject) jParser.parse(jsonString);
+		
+		JSONObject response = (JSONObject) jObject.get("response");
+		
+		JSONObject body = (JSONObject) response.get("body");
+		
+		JSONObject items = (JSONObject) body.get("items");
+		
+		JSONArray item = (JSONArray) items.get("item");
+		
+		log.debug("날씨 파싱중 데이터 {}",item.toString());
+		
+		List<WeatherVO> weatherVO = new ArrayList<>();
+		
+		int index = 0;
+		while(true) {
+			WeatherVO vo = new WeatherVO();
+			
+			JSONObject list = (JSONObject) item.get(index);
+			
+			String fcstTime = list.get("fcstTime").toString();
+			String fcstValue = list.get("fcstValue").toString();
+			String category = list.get("category").toString();
+			String fcstDate = list.get("fcstDate").toString();
+			
+			vo.setCategory(category);
+			vo.setFcstDate(fcstDate);
+			vo.setFcstTime(fcstTime);
+			vo.setFcstValue(fcstValue);
+			
+			weatherVO.add(vo);
+			
+			if(list.size() >= index) {
+				break;
+			}
+			index++;
+		}
+		
+		return weatherVO;
 	}
 
 	
