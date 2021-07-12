@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<%@ include file="/WEB-INF/views/weather.jsp" %>
 </body>
 <script>
 var rootPath = "${rootPath}"

@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
 
-import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +16,7 @@ import com.callor.woo.model.AddrVO;
 import com.callor.woo.model.WeatherVO;
 import com.callor.woo.service.NaverService;
 import com.callor.woo.service.WeatherService;
+import com.google.protobuf.TextFormat.ParseException;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +39,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/set", method = RequestMethod.GET)
-	public String home(@RequestParam("lat") String latitude, @RequestParam("lng") String longitude) throws MalformedURLException, IOException, ParseException {
+	public String home(@RequestParam("lat") String latitude, @RequestParam("lng") String longitude, Model model) throws MalformedURLException, IOException, ParseException, org.json.simple.parser.ParseException {
 		
 		log.debug("lat {}",latitude);
 		log.debug("lng {}",longitude);
@@ -65,6 +66,7 @@ public class HomeController {
 		
 		log.debug("날씨 파싱 데이터 {} ",weatherVO.toString());
 		
+		model.addAttribute("WEATHER", weatherVO);
 		return "home";
 	}
 }
