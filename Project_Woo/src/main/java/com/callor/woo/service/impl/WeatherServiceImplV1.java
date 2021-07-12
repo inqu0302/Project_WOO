@@ -6,7 +6,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.json.simple.JSONArray;
@@ -32,13 +34,17 @@ public class WeatherServiceImplV1 implements WeatherService {
 		String ar_x = location.get(0).getAr_x();
 		String ar_y = location.get(0).getAr_y();
 		
+		Date date = new Date();
 		
+		SimpleDateFormat dt = new SimpleDateFormat("yyyyMMdd");
+		
+		String day = dt.format(date);
 		
 		StringBuilder queryURL = new StringBuilder();
 		queryURL.append(WeatherSecret.URL);
 		
 		String queryString = String.format("?serviceKey=%s&numOfRows=225&pageNo=1&dataType=JSON"
-				+ "&base_date=20210712&base_time=0500&nx=%s&ny=%s", WeatherSecret.KEY, ar_x, ar_y);
+				+ "&base_date=%s&base_time=0500&nx=%s&ny=%s", WeatherSecret.KEY, day, ar_x, ar_y);
 		
 		queryURL.append(queryString);
 		
@@ -106,6 +112,9 @@ public class WeatherServiceImplV1 implements WeatherService {
 		while(true) {
 			WeatherVO vo = new WeatherVO();
 			
+			if(item.size() <= index) {
+				break;
+			}
 			JSONObject list = (JSONObject) item.get(index);
 			
 			String fcstTime = list.get("fcstTime").toString();
@@ -120,9 +129,9 @@ public class WeatherServiceImplV1 implements WeatherService {
 			
 			weatherVO.add(vo);
 			
-			if(list.size() >= index) {
-				break;
-			}
+//			log.debug("파싱 확인용 {} ", weatherVO.toString());
+//			log.debug("파싱 인덱스{}", index);
+			
 			index++;
 		}
 		

@@ -10,14 +10,15 @@ function success(position) {
     console.log("longitude(위도) : " + lng);
 
     // JSON 타입으로 전환
-    let posJson = {
-        lat, lng
-    }
+    //let posJson = {
+    //    lat, lng
+    //}
 
     console.log(`${rootPath}`)
-    fetch(`${rootPath}/set?lat=${lat}&lng=${lng}`) // ,{data:posJson})
-    .then(response=>response.json())
-    .then(json=>console.log(json));
+    // fetch(`${rootPath}/set?lat=${lat}&lng=${lng}`) // ,{data:posJson})
+    // .then(response=>response.json())
+    // .then(json=>console.log(json));
+    location.href=`${rootPath}/set?lat=${lat}&lng=${lng}`
     
 };
 

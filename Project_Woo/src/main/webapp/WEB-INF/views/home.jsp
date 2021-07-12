@@ -14,6 +14,6 @@
 <script>
 var rootPath = "${rootPath}"
 </script>
-<script src="${rootPath}/static/js/location.js?2021-07-01-01"> </script>
+<script src="${rootPath}/static/js/location.js?2021-07-01-05"> </script>
 
 </html>
