@@ -6,9 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.json.simple.JSONArray;
@@ -29,16 +27,10 @@ import lombok.extern.slf4j.Slf4j;
 public class WeatherServiceImplV1 implements WeatherService {
 
 	@Override
-	public String queryURL(List<AddrVO> location) {
+	public String queryURL(List<AddrVO> location, String day) {
 		// TODO Auto-generated method stub
 		String ar_x = location.get(0).getAr_x();
 		String ar_y = location.get(0).getAr_y();
-		
-		Date date = new Date();
-		
-		SimpleDateFormat dt = new SimpleDateFormat("yyyyMMdd");
-		
-		String day = dt.format(date);
 		
 		StringBuilder queryURL = new StringBuilder();
 		queryURL.append(WeatherSecret.URL);
@@ -120,7 +112,7 @@ public class WeatherServiceImplV1 implements WeatherService {
 			String fcstTime = list.get("fcstTime").toString();
 			String fcstValue = list.get("fcstValue").toString();
 			String category = list.get("category").toString();
-			String fcstDate = list.get("fcstDate").toString();
+			Integer fcstDate = Integer.valueOf(list.get("fcstDate").toString());
 			
 			vo.setCategory(category);
 			vo.setFcstDate(fcstDate);

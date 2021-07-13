@@ -28,14 +28,10 @@ while(true) {
 }
 
 
-
-
-|
-
-
 */
 select * from tbl_addr WHERE ar_dong LIKE CONCAT ('중흥동', '%');
 select * from tbl_addr WHERE ar_dong LIKE CONCAT ('중흥', '%');
+select * from tbl_addr WHERE ar_addr LIKE CONCAT ('서울특별시성동구금호2가동');
 
-
+select * from tbl_addr WHERE ar_addr = ('광주광역시서구양3동');
 

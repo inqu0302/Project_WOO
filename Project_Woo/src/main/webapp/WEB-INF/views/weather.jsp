@@ -4,12 +4,26 @@
     <c:set var="rootPath" value="${pageContext.request.contextPath }" />
 <div>
 	<ul>
-		 <li>테스트1</li>
-		 <c:forEach items="${WEATHER}" var="wt">
-			<li>${wt.fcstDate}</li>
-			<li>${wt.fcstTime}</li>
-			<li>${wt.category}</li>
-			<li>${wt.fcstValue}</li>
+		 <li>오늘날씨</li>
+		 <c:forEach items="${TODAY}" var="TD">
+			<li>${TD.fcstDate}</li>
+			<li>${TD.fcstTime}</li>
+			<li>${TD.category}</li>
+			<li>${TD.fcstValue}</li>
+		</c:forEach>
+		<li>내일날씨=====================================================================</li>
+		 <c:forEach items="${TOMORROW}" var="TM">
+			<li>${TM.fcstDate}</li>
+			<li>${TM.fcstTime}</li>
+			<li>${TM.category}</li>
+			<li>${TM.fcstValue}</li>
+		</c:forEach>
+		<li>2일뒤날씨=====================================================================</li>
+		 <c:forEach items="${AFTERTOMORROW}" var="AM">
+			<li>${AM.fcstDate}</li>
+			<li>${AM.fcstTime}</li>
+			<li>${AM.category}</li>
+			<li>${AM.fcstValue}</li>
 		</c:forEach>
 	</ul>
 </div>

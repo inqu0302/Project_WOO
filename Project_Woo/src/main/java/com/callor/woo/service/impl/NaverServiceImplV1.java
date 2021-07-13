@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
-@Service("naverServiceV1")
+@Service("naverService")
 public class NaverServiceImplV1 implements NaverService{
 
 	protected final AddrDao addrDao;

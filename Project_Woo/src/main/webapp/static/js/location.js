@@ -18,7 +18,7 @@ function success(position) {
     // fetch(`${rootPath}/set?lat=${lat}&lng=${lng}`) // ,{data:posJson})
     // .then(response=>response.json())
     // .then(json=>console.log(json));
-    location.href=`${rootPath}/set?lat=${lat}&lng=${lng}`
+    location.href=`${rootPath}/api?lat=${lat}&lng=${lng}`
     
 };
 

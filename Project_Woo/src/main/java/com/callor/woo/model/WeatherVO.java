@@ -16,7 +16,7 @@ import lombok.ToString;
 public class WeatherVO {
 
 	private String category;
-	private String fcstDate;
+	private Integer fcstDate;
 	private String fcstTime;
 	private String fcstValue;
 }

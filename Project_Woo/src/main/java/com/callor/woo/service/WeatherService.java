@@ -11,7 +11,7 @@ import com.callor.woo.model.WeatherVO;
 
 public interface WeatherService {
 	
-	public String queryURL(List<AddrVO> location);
+	public String queryURL(List<AddrVO> location,String day);
 
 	public String getJsonString(String queryURL) throws MalformedURLException, IOException;
 	

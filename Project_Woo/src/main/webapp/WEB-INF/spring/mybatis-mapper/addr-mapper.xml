@@ -8,7 +8,7 @@
   <select id="findByAddr" resultType="AddrVO">
   		
   		SELECT * FROM tbl_addr
-  		WHERE ar_addr LIKE CONCAT ('%', #{addr}, '%')
+  		WHERE ar_addr = (#{addr})
   		
   </select>
   
