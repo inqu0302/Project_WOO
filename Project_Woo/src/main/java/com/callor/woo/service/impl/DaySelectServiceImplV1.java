@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.callor.woo.model.ResultVO;
 import com.callor.woo.model.WeatherDTO;
 import com.callor.woo.model.WeatherVO;
 import com.callor.woo.service.DaySelectService;
@@ -29,11 +30,10 @@ public class DaySelectServiceImplV1 implements DaySelectService{
 		int date = Integer.valueOf(day);
 		
 //		log.debug("VO 사이즈{}",vo.size());
-		log.debug("오늘날씨 {}",date);
+		log.debug("오늘날짜 {}",date);
 		int size = voList.size();
 		for(int index = 0; index < size; index++) {
 //			log.debug("인덱스 {}",index);
-			
 			
 			WeatherVO vo = voList.get(index);
 
@@ -112,6 +112,7 @@ public class DaySelectServiceImplV1 implements DaySelectService{
 			if(fcstdate == date) {
 //				log.debug("오늘날짜 {} {}",date,vo.getFcstDate());
 				WeatherDTO td = new WeatherDTO();
+				
 				
 				td.setCategory(category);
 				td.setFcstDate(fcstdate);

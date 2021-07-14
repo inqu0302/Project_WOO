@@ -8,13 +8,11 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class WeatherDTO {
+@ToString
+public class ResultVO {
 
-	private Integer fcstDate;
-	private String fcstTime;
 	private String category;
-	private String fcstValue;
+	private String value;
 }
