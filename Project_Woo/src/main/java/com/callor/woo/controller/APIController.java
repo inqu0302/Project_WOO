@@ -20,6 +20,7 @@ import com.callor.woo.model.WeatherDTO;
 import com.callor.woo.model.WeatherVO;
 import com.callor.woo.service.DaySelectService;
 import com.callor.woo.service.NaverService;
+import com.callor.woo.service.TimeService;
 import com.callor.woo.service.WeatherService;
 import com.google.protobuf.TextFormat.ParseException;
 
@@ -40,6 +41,9 @@ public class APIController {
 	
 	@Qualifier("dayService")
 	protected final DaySelectService dService;
+	
+	@Qualifier("timeService")
+	protected final TimeService tService;
 
 	@RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
 	public String home(@RequestParam("lat") String latitude, @RequestParam("lng") String longitude, Model model) throws MalformedURLException, IOException, ParseException, org.json.simple.parser.ParseException {
@@ -87,6 +91,9 @@ public class APIController {
 //		log.debug("내일날씨 {}",tomorrow.toString());
 //		log.debug("2일뒤날씨 {}",afterTomorrow.toString());
 		
+		String time = tService.time();
+		
+		model.addAttribute("TIME", time);
 		model.addAttribute("TODAY", today);
 		model.addAttribute("TOMORROW", tomorrow);
 		model.addAttribute("AFTERTOMORROW", afterTomorrow);
