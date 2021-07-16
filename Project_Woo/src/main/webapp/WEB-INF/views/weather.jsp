@@ -4,6 +4,7 @@
     <c:set var="rootPath" value="${pageContext.request.contextPath }" />
 <div>
 	<ul>
+		<%= request.getAttribute("TIME") %>
 		 <li>오늘날씨</li>
 		 <c:forEach items="${TODAY}" var="TD">
 			<li>${TD.fcstDate}</li>

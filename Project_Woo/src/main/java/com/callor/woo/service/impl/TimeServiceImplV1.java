@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.callor.woo.service.TimeService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service("timeService")
 public class TimeServiceImplV1 implements TimeService {
 
@@ -16,20 +19,21 @@ public class TimeServiceImplV1 implements TimeService {
 		
 		Date date = new Date();
 		
-		SimpleDateFormat tm = new SimpleDateFormat("HH");
+		SimpleDateFormat tm = new SimpleDateFormat("HHmm");
 		
 		Integer intTime = Integer.valueOf(tm.format(date));
-		
 		String time = null;
 		
-		if( 0 <= intTime && 300 < intTime) time="0000";
-		else if( 300 <= intTime && 600 < intTime) time="0300";
-		else if( 600 <= intTime && 900 < intTime) time="0600";
-		else if( 900 <= intTime && 1200 < intTime) time="0900";
-		else if( 1200 <= intTime && 1500 < intTime) time="1200";
-		else if( 1500 <= intTime && 1800 < intTime) time="1500";
-		else if( 1800 <= intTime && 2100 < intTime) time="1800";
-		else if( 2100 <= intTime && 2400 < intTime) time="2100";
+//		log.debug("시간 {}", intTime);
+		
+		if( 0 <= intTime && intTime <300) time="0000";
+		else if( 300 <= intTime && intTime < 600) time="0300";
+		else if( 600 <= intTime && intTime < 900) time="0600";
+		else if( 900 <= intTime && intTime < 1200) time="0900";
+		else if( 1200 <= intTime && intTime < 1500) time="1200";
+		else if( 1500 <= intTime && intTime < 1800) time="1500";
+		else if( 1800 <= intTime && intTime < 2100) time="1800";
+		else if( 2100 <= intTime && intTime < 2400) time="2100";
 		
 		return time;
 	}
