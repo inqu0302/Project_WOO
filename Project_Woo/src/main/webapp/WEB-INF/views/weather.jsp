@@ -27,6 +27,7 @@ div ul li{
 				<li id="value"></li>
 			</c:if>
 		</c:forEach>
+		<li>"${SEASON}"</li>
 	</ul>
 </div>
 
