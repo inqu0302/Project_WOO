@@ -42,6 +42,8 @@ public class DaySelectServiceImplV1 implements DaySelectService{
 			String fcsttime = vo.getFcstTime();
 			String fcstValue = vo.getFcstValue();
 			
+			fcsttime = fcsttime.substring(0,2) + "시";
+			
 			if(category.equals("POP")) {
 				category = "강수확률";
 				fcstValue = fcstValue + "%";
