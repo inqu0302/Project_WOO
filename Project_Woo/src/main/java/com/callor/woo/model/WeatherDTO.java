@@ -17,4 +17,5 @@ public class WeatherDTO {
 	private String fcstTime;
 	private String category;
 	private String fcstValue;
+	
 }

@@ -27,6 +27,8 @@ public class DaySelectServiceImplV1 implements DaySelectService{
 		List<WeatherDTO> tomorrow = new ArrayList<WeatherDTO>();
 		List<WeatherDTO> afterTomorrow = new ArrayList<WeatherDTO>();
 		
+		Map<String, List<ResultVO>> time = new HashMap<String, List<ResultVO>>();
+		
 		int date = Integer.valueOf(day);
 		
 //		log.debug("VO 사이즈{}",vo.size());
@@ -125,18 +127,31 @@ public class DaySelectServiceImplV1 implements DaySelectService{
 				fcstValue = fcstValue + "m/s";
 			}
 
+
+			List<ResultVO> result = new ArrayList<ResultVO>();
+			
 			if(fcstdate == date) {
 //				log.debug("오늘날짜 {} {}",date,vo.getFcstDate());
 				WeatherDTO td = new WeatherDTO();
 				
+				// 시간대별로 map을 설정하기 진행중
+				ResultVO rs = new ResultVO();
 				
+				rs.setCategory(category);
+				rs.setValue(fcstValue);
+				
+				result.add(rs);
+				
+				time.put(fcsttime, result);
+				
+//				log.debug("time {}", time.toString());
 				td.setCategory(category);
 				td.setFcstDate(fcstdate);
 				td.setFcstTime(fcsttime);
 				td.setFcstValue(fcstValue);
 				
-				today.add(td);	
-				
+				today.add(td);
+
 //				log.debug("오늘날씨 {}",today.toString());
 				
 			} else if(fcstdate == (date+1)) {
@@ -171,6 +186,7 @@ public class DaySelectServiceImplV1 implements DaySelectService{
 //		log.debug("오늘날씨 {}",today.toString());
 //		log.debug("내일날씨 {}",tomorrow.toString());
 //		log.debug("2일뒤날씨 {}",afterTomorrow.toString());
+		log.debug("시간대 날씨 {}", time.toString());
 		
 		weather.put("today", today);
 		weather.put("tomorrow", tomorrow);
